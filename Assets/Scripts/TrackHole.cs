@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class TrackHole : MonoBehaviour
 {
-    [Header("TrackHole")]
-    [SerializeField]
-    private GameObject[] segment;
+    public GameObject[] segment;
 
     void Start()
     {
@@ -14,9 +12,9 @@ public class TrackHole : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+
     }
 }

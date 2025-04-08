@@ -10,8 +10,10 @@ public class PlayMove : MonoBehaviour
 
     private bool isGround = false;
     private Rigidbody rb;
-
     private Animator anim;
+
+    [SerializeField]
+    private CamShake camShake;
 
 
     [Header("Slide")]
@@ -23,10 +25,19 @@ public class PlayMove : MonoBehaviour
 
     private float currentSpeed;
 
+    private AudioSource PlayerAudio;
+
+    [SerializeField]
+    private AudioClip JumpClip;
+    [SerializeField]
+    private AudioClip CoinClip;
+
+
+
     private void Start()
     {
+        PlayerAudio = this.GetComponent<AudioSource>();
         currentSpeed = normalSpeed;
-
         anim = this.GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
     }
@@ -38,6 +49,7 @@ public class PlayMove : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
+            PlayerAudio.PlayOneShot(JumpClip);
             rb.AddForce(Vector3.up * JumpSpeed, ForceMode.Impulse);
             isGround = false;
         }
@@ -68,5 +80,21 @@ public class PlayMove : MonoBehaviour
         {
             isGround = true;
         }
+
+       
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Monster")
+        {
+            camShake.Shake();
+        }
+
+        else if (other.gameObject.tag == "Coin")
+        {
+            PlayerAudio.PlayOneShot(CoinClip);
+        }
+
     }
 }
