@@ -358,6 +358,8 @@ MonoBehaviour:
   secondCard: {fileID: 0}
   CardCount: 0
   GameOverText: {fileID: 1421791579}
+  TimeText: {fileID: 361764253}
+  TimeTest: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,15 +37,19 @@ public class Card : MonoBehaviour
         Invoke("DestoryCardInvoke", 1.0f);
     }
 
+
     void DestoryCardInvoke()
     {
         Destroy(gameObject);
     }
 
+
+
     public void CloseCard()
     {
         Invoke("CloseCardInvoke", 1.0f);
     }
+
 
     void CloseCardInvoke()
     {
@@ -55,9 +59,12 @@ public class Card : MonoBehaviour
     }
 
 
+
     public void Setting(int number)
     {
         index = number;
         frontImage.sprite = Resources.Load<Sprite>($"rtan{index}");
     }
+
+
 }
