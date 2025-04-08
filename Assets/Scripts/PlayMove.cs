@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -32,6 +33,21 @@ public class PlayMove : MonoBehaviour
     [SerializeField]
     private AudioClip CoinClip;
 
+    private int jumpCount = 0;
+    public int maxJumpCount = 2;
+
+    [SerializeField]
+    private ParticleSystem hitEffect;
+
+
+    //[Header("Obsctacle")]
+    //public float knockbackForce = 10f;
+    //public float knockbackUpwardForce = 2f;
+    //public float knockbackDuration = 0.2f;
+    //private bool isKnockedBack = false;
+
+
+
 
 
     private void Start()
@@ -47,11 +63,14 @@ public class PlayMove : MonoBehaviour
     {
         this.transform.Translate(0, 0, currentSpeed * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount<maxJumpCount)
         {
             PlayerAudio.PlayOneShot(JumpClip);
             rb.AddForce(Vector3.up * JumpSpeed, ForceMode.Impulse);
             isGround = false;
+            jumpCount++;
+
+            
         }
 
         if(!isSliding && Input.GetKeyDown(KeyCode.C))
@@ -79,16 +98,18 @@ public class PlayMove : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             isGround = true;
+            jumpCount = 0;
         }
-
-       
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.tag == "Obstacle" )
         {
+            other.gameObject.SetActive(false);
+            hitEffect.Play();
             camShake.Shake();
+            //StartCoroutine(Knockback());
         }
 
         else if (other.gameObject.tag == "Coin")
@@ -97,4 +118,18 @@ public class PlayMove : MonoBehaviour
         }
 
     }
+
+    //private IEnumerator Knockback()
+    //{
+    //    isKnockedBack = true;
+
+    //    // 현재 방향과 반대 방향으로 힘을 가함
+    //    Vector3 knockbackDirection = (-transform.forward + Vector3.up * knockbackUpwardForce).normalized;
+    //    rb.angularVelocity = Vector3.zero; // 기존 속도 제거
+    //    rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+
+    //    yield return new WaitForSeconds(knockbackDuration);
+
+    //    isKnockedBack = false;
+    //}
 }

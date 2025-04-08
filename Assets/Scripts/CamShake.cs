@@ -7,10 +7,9 @@ public class CamShake : MonoBehaviour
     public float duration = 0.2f;      // 흔들리는 시간
     public float magnitude = 0.3f;     // 흔들림 강도
 
-    private void FixedUpdate()
-    {
-      
-    }
+    [SerializeField]
+    PlayMove m_playMove;
+
 
     public void Shake()
     {
@@ -37,6 +36,9 @@ public class CamShake : MonoBehaviour
         }
 
         transform.localPosition = originalPos;
+
+       // StartCoroutine(m_playMove.Knockback());
+
     }
     void Update()
     {

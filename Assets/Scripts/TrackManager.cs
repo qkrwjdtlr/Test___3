@@ -29,7 +29,7 @@ public class TrackManager : MonoBehaviour
                 if (Count == 3)
                     Count = 0;
                 num = Random.Range(1, 6);
-                m_trackHoles[Count].segment[num].SetActive(false);
+                //m_trackHoles[Count].segment[num].SetActive(false);
             }
         }
     }

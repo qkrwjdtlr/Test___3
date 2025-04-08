@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2338490837133136201}
   - component: {fileID: 8900052347148095102}
   - component: {fileID: 3855232952976547793}
+  - component: {fileID: -1520499721518109876}
   m_Layer: 0
   m_Name: StarCoin
   m_TagString: Coin
@@ -131,3 +132,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.2879571
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1520499721518109876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729239558671062028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4f46e40e151e142b45063a2b1cb8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
